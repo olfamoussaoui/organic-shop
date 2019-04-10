@@ -1,0 +1,120 @@
+.title-h3 {
+    font-size: 35px;
+    font-weight: 600;
+    color: #282828;
+    padding-bottom: 1.875pc;
+    background-size: auto;
+    background-position: center bottom;
+    background-repeat: no-repeat;
+    background-image: url('/assets/img/titleIcon.png');
+    margin-bottom: 20px;
+}
+.page-title-breadcrumbs {
+    margin-bottom: 60pt;
+    background-repeat: no-repeat !important;
+    background-image: url('/assets/img/juice.jpg');
+    background-size: 100%;
+    padding-bottom: 9.375pc !important;
+    padding-top: 150px !important;
+}
+.container {
+    padding-bottom: 5rem;
+}
+.titles {
+    font-family: 'Kalam';
+    font-size: 22px;
+    color: #91ad41;
+    letter-spacing: .2em;
+    margin-bottom: 5px;
+    font-weight: 500;
+    line-height: 1.2;
+
+}
+.main-image {
+    margin-bottom: .75pc;
+    float: right;
+    width: 80%;
+}
+.main-image img {
+    border-width: .0625pc;
+    border-color: #f5f6fb;
+    border-style: solid;
+}
+.thumb-images {
+    padding-right: .104166667in;
+    float: left;
+    width: 20%;
+}
+.thumb-images img {
+    height: auto;
+    display: block;
+    cursor: pointer;
+    border-image: none;
+    border-color: #f5f6fb;
+    max-width: 100%;
+    border-style: solid;
+    border-width: .0625pc;
+    margin-bottom: 13px;
+}
+h2 .money {
+    font-size: 20px;
+    font-weight: 500;
+    font-family: Poppins;
+    color: #91ad41;
+}
+del span{
+    margin-left: .104166667in;
+    font-size: 20px;
+    font-weight: 500;
+    font-family: Poppins;
+}
+.management-content {
+    margin-top: 20px;
+    margin-bottom: 10px;
+    font-size: .145833333in;
+}
+.management-title {
+    font-size: .875pc;
+    margin-right: .052083333in;
+    font-weight: 600;
+    color: #282828;
+    font-family: Poppins;
+}
+.management-description {
+    font-weight: 400;
+    color: #91ad41;
+    font-family: Poppins;
+}
+input[type=number]{
+    width: 6rem;
+    margin-right: .104166667in;
+} 
+.button-main {
+    border-width: .75pt;
+    text-transform: uppercase;
+    padding-right: 30px;
+    padding-left: .3125in;
+    background-color: #27272f;
+    border-color: #27272f;
+    color: #fff;
+    line-height: .416666667in;
+    height: 2.5pc;
+    font-weight: 600;
+    padding-top: 0;
+}
+.button-main:hover {
+    background-color: #91ad41;
+    border-color: #91ad41;
+}
+.tags-content {
+    margin-top: 20px;
+    margin-bottom: 10px;
+    font-size: .145833333in;
+}
+.tag-title {
+    font-size: .875pc;
+    margin-right: .052083333in;
+    font-weight: 500;
+    color: #282828;
+    font-family: Poppins;
+}

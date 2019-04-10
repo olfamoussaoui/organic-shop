@@ -1,0 +1,299 @@
+<div class="main">
+  <div class="page-title-breadcrumbs">
+    <div class="breadcrumbs-container container">
+      <div class="breadcrumbs_wrapper">
+        <div class="page-title-container">
+          <h1 class="text-center" style="opacity: 0">shop</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+        <h2 class="d-flex justify-content-center titles"> Shop </h2>
+    <div class="text-center">
+      <h2 class="title-h3">Feature Products</h2>
+    </div>
+    <div class=" row flex-t-center justify-content-center d-flex mt-3 mb-3">
+      <button
+        type="button"
+        class="btn btn-outline-success btn-round "
+        (click)="showAllProducts()"
+      >
+        All
+      </button>
+      <button
+        type="button"
+        class="btn btn-outline-success btn-round "
+        (click)="showFruitProducts()"
+      >
+        Fruits
+      </button>
+      <button
+        type="button"
+        class="btn btn-outline-success btn-round "
+        (click)="showVegProducts()"
+      >
+        Vegetables
+      </button>
+      <button
+        type="button"
+        class="btn btn-outline-success btn-round "
+        (click)="showNatHerbProducts()"
+      >
+        Natural herbs
+      </button>
+    </div>
+    <ng-template [ngIf]="isFruits">
+      <div class="row">
+        <div
+          class="col-md-3 col-sm-6 product-pos"
+          *ngFor="let product of fruitProducts"
+        >
+          <div class="product-grid">
+            <div class="product-image">
+              <a href="#">
+                <img
+                  height="200px"
+                  width="200px"
+                  class="pic-1"
+                  src="{{ BaseURL + product.image_1 }}"
+                />
+                <img class="pic-2" src="{{ BaseURL + product.image_2 }}" />
+              </a>
+              <ul class="social">
+                <li>
+                  <a href="" data-tip="Quick View"
+                    ><i class="fa fa-search"></i
+                  ></a>
+                </li>
+                <li>
+                  <a href="" data-tip="Add to Wishlist"
+                    ><i class="fa fa-shopping-bag"></i
+                  ></a>
+                </li>
+                <li>
+                  <a href="" data-tip="Add to Cart"
+                    ><i class="fa fa-shopping-cart"></i
+                  ></a>
+                </li>
+              </ul>
+              <span
+                class="product-discount-label"
+                *ngIf="product.promotion.isPromoted"
+                >{{ product.promotion.pourcentage }}%</span
+              >
+            </div>
+            <div class="product-content">
+              <h3 class="title">
+                <a href="#">{{ product.name }}</a>
+              </h3>
+              <hr />
+              <ng-template [ngIf]="product.promotion.isPromoted">
+                <div class="price">
+                  ${{
+                    product.price -
+                      product.price * (product.promotion.pourcentage / 100)
+                  }}
+                  <span>${{ product.price }}</span>
+                </div>
+              </ng-template>
+              <ng-template [ngIf]="!product.promotion.isPromoted">
+                <div class="price">${{ product.price }}</div>
+              </ng-template>
+              <a class="add-to-cart" href="">+ Add To Cart</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-template>
+    <ng-template [ngIf]="isVeg">
+      <div class="row">
+        <div
+          class="col-md-3 col-sm-6 product-pos"
+          *ngFor="let product of vegProducts"
+        >
+          <div class="product-grid">
+            <div class="product-image">
+              <a href="#">
+                <img
+                  height="200px"
+                  width="200px"
+                  class="pic-1"
+                  src="{{ BaseURL + product.image_1 }}"
+                />
+                <img class="pic-2" src="{{ BaseURL + product.image_2 }}" />
+              </a>
+              <ul class="social">
+                <li>
+                  <a href="" data-tip="Quick View"
+                    ><i class="fa fa-search"></i
+                  ></a>
+                </li>
+                <li>
+                  <a href="" data-tip="Add to Wishlist"
+                    ><i class="fa fa-shopping-bag"></i
+                  ></a>
+                </li>
+                <li>
+                  <a (click)="saveLocal()" data-tip="Add to Cart"
+                    ><i class="fa fa-shopping-cart"></i
+                  ></a>
+                </li>
+              </ul>
+              <span
+                class="product-discount-label"
+                *ngIf="product.promotion.isPromoted"
+                >{{ product.promotion.pourcentage }}%</span
+              >
+            </div>
+            <div class="product-content">
+              <h3 class="title">
+                <a href="#">{{ product.name }}</a>
+              </h3>
+              <hr />
+              <ng-template [ngIf]="product.promotion.isPromoted">
+                <div class="price">
+                  ${{
+                    product.price -
+                      product.price * (product.promotion.pourcentage / 100)
+                  }}
+                  <span>${{ product.price }}</span>
+                </div>
+              </ng-template>
+              <ng-template [ngIf]="!product.promotion.isPromoted">
+                <div class="price">${{ product.price }}</div>
+              </ng-template>
+              <a class="add-to-cart" href="">+ Add To Cart</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-template>
+    <ng-template [ngIf]="isNatHerbs">
+      <div class="row">
+        <div
+          class="col-md-3 col-sm-6 product-pos"
+          *ngFor="let product of natHerbProducts"
+        >
+          <div class="product-grid">
+            <div class="product-image">
+              <a href="#">
+                <img
+                  height="200px"
+                  width="200px"
+                  class="pic-1"
+                  src="{{ BaseURL + product.image_1 }}"
+                />
+                <img class="pic-2" src="{{ BaseURL + product.image_2 }}" />
+              </a>
+              <ul class="social">
+                <li>
+                  <a href="" data-tip="Quick View"
+                    ><i class="fa fa-search"></i
+                  ></a>
+                </li>
+                <li>
+                  <a href="" data-tip="Add to Wishlist"
+                    ><i class="fa fa-shopping-bag"></i
+                  ></a>
+                </li>
+                <li>
+                  <a href="" data-tip="Add to Cart"
+                    ><i class="fa fa-shopping-cart"></i
+                  ></a>
+                </li>
+              </ul>
+              <span
+                class="product-discount-label"
+                *ngIf="product.promotion.isPromoted"
+                >{{ product.promotion.pourcentage }}%</span
+              >
+            </div>
+            <div class="product-content">
+              <h3 class="title">
+                <a href="#">{{ product.name }}</a>
+              </h3>
+              <hr />
+              <ng-template [ngIf]="product.promotion.isPromoted">
+                <div class="price">
+                  ${{
+                    product.price -
+                      product.price * (product.promotion.pourcentage / 100)
+                  }}
+                  <span>${{ product.price }}</span>
+                </div>
+              </ng-template>
+              <ng-template [ngIf]="!product.promotion.isPromoted">
+                <div class="price">${{ product.price }}</div>
+              </ng-template>
+              <a class="add-to-cart" href="">+ Add To Cart</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-template>
+    <ng-template [ngIf]="isAll">
+      <div class="row">
+        <div
+          class="col-md-3 col-sm-6 product-pos"
+          *ngFor="let product of products"
+        >
+          <div class="product-grid">
+            <div class="product-image">
+              <a href="#">
+                <img
+                  height="200px"
+                  width="200px"
+                  class="pic-1"
+                  src="{{ BaseURL + product.image_1 }}"
+                />
+                <img class="pic-2" src="{{ BaseURL + product.image_2 }}" />
+              </a>
+              <ul class="social">
+                <li>
+                  <a href="" data-tip="Quick View"
+                    ><i class="fa fa-search"></i
+                  ></a>
+                </li>
+                <li>
+                  <a href="" data-tip="Add to Wishlist"
+                    ><i class="fa fa-shopping-bag"></i
+                  ></a>
+                </li>
+                <li>
+                  <a href="" data-tip="Add to Cart"
+                    ><i class="fa fa-shopping-cart"></i
+                  ></a>
+                </li>
+              </ul>
+              <span
+                class="product-discount-label"
+                *ngIf="product.promotion.isPromoted"
+                >{{ product.promotion.pourcentage }}%</span
+              >
+            </div>
+            <div class="product-content">
+              <h3 class="title">
+                <a href="#">{{ product.name }}</a>
+              </h3>
+              <hr />
+              <ng-template [ngIf]="product.promotion.isPromoted">
+                <div class="price">
+                  ${{
+                    product.price -
+                      product.price * (product.promotion.pourcentage / 100)
+                  }}
+                  <span>${{ product.price }}</span>
+                </div>
+              </ng-template>
+              <ng-template [ngIf]="!product.promotion.isPromoted">
+                <div class="price">${{ product.price }}</div>
+              </ng-template>
+              <a class="add-to-cart" href="">+ Add To Cart</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-template>
+  </div>
+</div>

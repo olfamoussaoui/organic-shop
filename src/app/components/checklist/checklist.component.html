@@ -1,0 +1,225 @@
+<div class="main">
+  <div class="page-title-breadcrumbs">
+    <div class="breadcrumbs-container container">
+      <div class="breadcrumbs_wrapper">
+        <div class="page-title-container">
+          <h1 class="text-center" style="opacity: 0">shop</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <h2 class="d-flex justify-content-center titles">Cart</h2>
+    <div class="text-center">
+      <h2 class="title-h3">Checklist</h2>
+    </div>
+    <div class="cart-wrapper">
+      <div class="container">
+        <div class="cart-section">
+          <div class="cart-form">
+            <form action="cart" method="post">
+              <div class="table-responsive">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th class="product" colspan="2">Product</th>
+                      <th class="price">Price</th>
+                      <th class="qty">Quantity</th>
+                      <th class="total">Total</th>
+                      <th class="remove">Remove</th>
+                    </tr>
+                  </thead>
+
+                  <tbody>
+                    <tr>
+                      <td class="image">
+                        <div class="product-image">
+                          <a href="product-detail.html">
+                            <img
+                              src="/assets/img/boufe.jpg"
+                              alt="Bacon Smoked"
+                            />
+                          </a>
+                        </div>
+                      </td>
+                      <td class="image-info">
+                        <div class="product-name">
+                          <a href="product-detail.html" class="title-black">
+                            Bacon Smoked
+                          </a>
+                        </div>
+                      </td>
+                      <td class="price">
+                        <span class="money" data-currency-usd="$100.00"
+                          >$100.00</span
+                        >
+                      </td>
+                      <td class="qty">
+                        <div class="quantity-wrapper clearfix">
+                          <div class="wrapper d-flex justify-content-center">
+                            <input
+                              type="number"
+                              class="form-control text-center"
+                              value="1"
+                            />
+                          </div>
+                        </div>
+                      </td>
+                      <td class="total title-1">
+                        <span class="money" data-currency-usd="$100.00"
+                          >$100.00</span
+                        >
+                      </td>
+                      <td class="remove">
+                        <a href="#" class="cart">
+                          <i class="fa fa-times" aria-hidden="true"></i>
+                        </a>
+                      </td>
+                    </tr>
+
+                    <tr class="cart-actions">
+                      <td colspan="3" class="back-to-shop text-left">
+                        <span>
+                          <a
+                            href="product-category-grid.html"
+                            class="btn view button-main"
+                          >
+                            <i
+                              class="fa fa-long-arrow-left"
+                              aria-hidden="true"
+                            ></i>
+                            Back To Shop
+                          </a>
+                        </span>
+                      </td>
+                      <td colspan="3" class="cart-process text-right">
+                        <a
+                          class="gsf-link clear-cart btn view button-main1"
+                          href="#"
+                        >
+                          <i class="fa fa-times" aria-hidden="true"></i>
+                          <span>Clear All</span>
+                        </a>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="row">
+                <div class="col-lg-5 col-md-12">
+                  <div class="coupon-wrap">
+                    <div class="coupon text-left">
+                      <h4 class="woocommerce-block-title">Coupon Discount</h4>
+                      <div class="coupon-content">
+                        <p class="description">
+                          Enter your coupon if you have one
+                        </p>
+                        <input
+                          type="text"
+                          name="coupon_code"
+                          class="input-code spr-form-input"
+                          id="coupon_code"
+                          value=""
+                          placeholder="Coupon code"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-lg-7 col-md-12 cart-collaterals mg-top-50">
+                  <div class="layout-cart-right">
+                    <div class="cart-totals clearfix">
+                      <div>
+                        <h4 class="woocommerce-block-title mg-top-0">
+                          Cart Total
+                        </h4>
+                        <table class="shop-table" style="margin-bottom: 17.25pt;">
+                          <tbody>
+                            <tr class="cart-subtotal">
+                              <th>Subtotal</th>
+                              <td data-title="Subtotal">
+                                <span class="woocommerce-Price-amount amount">
+                                  <span class="woocommerce-Price-currencySymbol"
+                                    >$</span
+                                  >177.00
+                                </span>
+                              </td>
+                            </tr>
+
+                            <tr class="cart-subtotal cart-item">
+                              <th>Shipping</th>
+                              <td data-title="Subtotal">
+                                <div class="check-box">
+                                  <label class="check">
+                                    <input type="checkbox" />
+                                    <span class="checkmark"></span>
+                                  </label>
+                                    <span>Free Shipping</span>
+                                </div>
+                                <div class="check-box">
+                                  <label class="check">
+                                    <input type="checkbox" checked="" />
+                                    <span class="checkmark"></span>
+                                  </label>
+                                    <span>Local Pickup</span>
+                                </div>
+                                <div class="check-box">
+                                  <label class="check">
+                                    <input type="checkbox" />
+                                    <span class="checkmark"></span>
+                                  </label>
+                                    <span>Flat Rate</span>
+                                </div>
+                                <div class="coupon-wrap">
+                                  <div class="coupon text-left">
+                                    <h4 class="woocommerce-block-title" style="margin-bottom: 1rem;">
+                                      Calculate Shipping
+                                    </h4>
+                                    <div class="coupon-content">
+                                      <select>
+                                        <option value="">United Kingdom</option>
+                                      </select>
+                                      <input
+                                        type="text"
+                                        class="input-code spr-form-input"
+                                        placeholder="Postcode/Zip"
+                                      />
+                                    </div>
+                                  </div>
+                                </div>
+                              </td>
+                            </tr>
+
+                            <tr class="order-total">
+                              <th>Total</th>
+                              <td data-title="Total">
+                                <span class="woocommerce-Price-amount amount">
+                                  <span class="woocommerce-Price-currencySymbol"
+                                    >$</span
+                                  >177.00
+                                </span>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+
+                        <div class="to-checkout">
+                          <a
+                            href="product-checkout.html"
+                            class="checkout-button  btn view button-main"
+                            >Proceed to checkout</a
+                          >
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
