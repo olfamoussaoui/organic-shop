@@ -1,5 +1,6 @@
+import { LocalStorageService, LocalStorage } from 'ngx-webstorage';
 import { Component, OnInit, ElementRef } from '@angular/core';
-import { Location, LocationStrategy, PathLocationStrategy } from '@angular/common';
+import { Location } from '@angular/common';
 
 @Component({
     selector: 'app-navbar',
@@ -9,15 +10,20 @@ import { Location, LocationStrategy, PathLocationStrategy } from '@angular/commo
 export class NavbarComponent implements OnInit {
     private toggleButton: any;
     private sidebarVisible: boolean;
-    nb = 12;
-
-    constructor(public location: Location, private element: ElementRef) {
+    @LocalStorage('keytot')
+    total;
+    constructor(public location: Location,
+        private localSt: LocalStorageService,
+        private element: ElementRef) {
         this.sidebarVisible = false;
     }
 
     ngOnInit() {
         const navbar: HTMLElement = this.element.nativeElement;
         this.toggleButton = navbar.getElementsByClassName('navbar-toggler')[0];
+        this.localSt.observe('keytot').subscribe((response) => {
+          console.log(response);
+        });
     }
     sidebarOpen() {
         const toggleButton = this.toggleButton;
@@ -48,23 +54,4 @@ export class NavbarComponent implements OnInit {
             this.sidebarClose();
         }
     };
-    isHome() {
-        var titlee = this.location.prepareExternalUrl(this.location.path());
-
-        if( titlee === '/home' ) {
-            return true;
-        }
-        else {
-            return false;
-        }
-    }
-    isDocumentation() {
-        var titlee = this.location.prepareExternalUrl(this.location.path());
-        if( titlee === '/documentation' ) {
-            return true;
-        }
-        else {
-            return false;
-        }
-    }
 }

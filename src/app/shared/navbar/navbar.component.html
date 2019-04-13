@@ -47,18 +47,19 @@
             <i class="nc-icon nc-email-85"></i>Contact
           </a>
         </li>
-        <ng-template [ngIf]="nb!=0" >
-            <li class="nav-item"  attr.data-badge="{{nb}}">
+        <ng-template [ngIf]="total!=0" >
+            <li class="nav-item">
                 <a
                   class="nav-link"
                   routerLink="/checklist"
                   routerLinkActive="active">
+                  <span class="badge badge1">{{total}}</span>
                   <i class="nc-icon nc-cart-simple"></i>
                   Cart
                 </a>
             </li>
         </ng-template>
-        <ng-template [ngIf]="nb==0" >
+        <ng-template [ngIf]="total == 0" >
             <li class="nav-item">
                 <a
                   class="nav-link"

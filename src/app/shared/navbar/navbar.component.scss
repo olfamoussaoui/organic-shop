@@ -6,23 +6,18 @@
   }
 }
 
-.navbar-nav {  
-  [data-badge] {
-    position:relative;     
-    &:after {
-      position:absolute;
-      right:45px;
-      top:14px;
-      min-width:10px;
-      min-height:10px;
-      line-height:10px;
-      padding:5px;
-      color:#fff;
-      background-color:#bf1f1f;
-      font-size:10px;
-      border-radius:20px;
-      content:attr(data-badge);
-      border:solid 1px #c93a3a;
-    }   
-  }  
+.badge1 {
+  position: absolute;
+  right: auto;
+  top: 14px;
+  min-width: 10px;
+  min-height: 10px;
+  line-height: 10px;
+  padding: 5px;
+  color: #fff;
+  background-color: #bf1f1f;
+  font-size: 10px;
+  border-radius: 20px;
+  content: attr(data-badge);
+  border: solid 1px #c93a3a;
 }

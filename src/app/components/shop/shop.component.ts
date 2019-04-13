@@ -1,6 +1,8 @@
+import { Cart } from './../../shared/classes/cart';
 import { ProductService } from './../../services/product.service';
 import { Product } from './../../shared/classes/product';
 import { Component, OnInit, Inject } from '@angular/core';
+import { LocalStorageService } from 'ngx-webstorage';
 
 @Component({
   selector: 'app-shop',
@@ -17,8 +19,12 @@ export class ShopComponent implements OnInit {
   isNatHerbs: Boolean = false;
   isAll: Boolean = true;
   errMess: string;
+  _id: string;
+  cart: Cart;
+  keytot = 'keytot';
   constructor(private productService: ProductService,
-    @Inject('BaseURL') public BaseURL) { }
+    private localSt: LocalStorageService,
+    @Inject('BaseURL') public BaseURL) {}
 
   ngOnInit() {
     this.productService.getProducts().subscribe(products => this.products = products,
@@ -64,6 +70,64 @@ export class ShopComponent implements OnInit {
     this.isAll = true;
   }
 
-  saveLocal() {
+  saveLocal(p: Product) {
+    const basket: Cart[] = this.localSt.retrieve('basket');
+    let shopping_cart: Cart[] = [];
+    let testCart: Cart = new Cart;
+    let index;
+    let total;
+    this.cart = new Cart;
+    if (basket === null) {
+      // add the first new product here
+      this.cart.product = p;
+      this.cart.quantity = 1;
+      shopping_cart.push(this.cart);
+      this.localSt.store('basket', shopping_cart);
+      this.localSt.store('keytot', 1);
+    } else {
+      // check if the product exist or not
+      shopping_cart = [];
+      index = basket.map(res => {
+        return res.product.id;
+      }).indexOf(p.id);
+      console.log('index = ', index);
+      if ( index >= 0 ) {
+        console.log('item exist');
+        // item exist
+        shopping_cart = basket.filter(data => {
+          return data.product.id !== p.id
+        });
+        testCart = basket.find( c => c.product.id === p.id);
+        console.log(testCart);
+        this.cart.product = p;
+        this.cart.quantity = testCart.quantity + 1;
+        shopping_cart.push(this.cart);
+        // Update Basket
+        this.localSt.clear('basket');
+        this.localSt.store('basket', shopping_cart);
+        // Update keytot
+        total = this.localSt.retrieve('keytot');
+        this.keytot = total + 1;
+        this.localSt.clear('keytot');
+        this.localSt.store('keytot', this.keytot);
+      } else {
+        // item does not exist
+        console.log('item does not exist')
+        shopping_cart = basket;
+        this.cart.product = p;
+        this.cart.quantity = 1;
+        shopping_cart.push(this.cart);
+        // Update Basket
+        this.localSt.clear('basket');
+        this.localSt.store('basket', shopping_cart);
+        // Update keytot
+        total = this.localSt.retrieve('keytot');
+        this.keytot = total + 1;
+        this.localSt.clear('keytot');
+        this.localSt.store('keytot', this.keytot);
+      }
+    }
   }
 }
+
+

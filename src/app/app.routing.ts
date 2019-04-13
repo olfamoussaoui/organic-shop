@@ -10,8 +10,6 @@ import { HomeComponent } from './home/home.component';
 import { ProfileComponent } from './profile/profile.component';
 import { SignupComponent } from './signup/signup.component';
 import { LandingComponent } from './landing/landing.component';
-import { NucleoiconsComponent } from './components/nucleoicons/nucleoicons.component';
-import { AboutusComponent } from './components/aboutus/aboutus.component';
 import { ChecklistComponent } from './components/checklist/checklist.component';
 
 const routes: Routes = [
@@ -22,7 +20,6 @@ const routes: Routes = [
     { path: 'signup',           component: SignupComponent },
     { path: 'shop',             component: ShopComponent },
     { path: 'landing',          component: LandingComponent },
-    { path: 'nucleoicons',      component: NucleoiconsComponent },
     { path: '', redirectTo: 'home', pathMatch: 'full' }
 ];
 
