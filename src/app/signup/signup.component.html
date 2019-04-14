@@ -1,43 +1,110 @@
 <div class="wrapper">
-    <div class="page-header" style="background-image: url('./assets/img/juice.jpg');">
-        <div class="filter"></div>
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-4 col-sm-6 mr-auto ml-auto">
-                      <div class="card card-register">
-                          <h3 class="title">Welcome</h3>
-                          <form class="register-form">
-                              <label>Email</label>
-                              <div class="input-group form-group-no-border" [ngClass]="{'input-group-focus':focus===true}">
-                                <div class="input-group-prepend">
-                                  <span class="input-group-text">
-                                      <i class="nc-icon nc-email-85"></i>
-                                  </span>
-                                </div>
-
-                                  <input type="text" class="form-control" placeholder="Email" (focus)="focus=true" (blur)="focus=false" >
-                              </div>
-
-                              <label>Password</label>
-                              <div class="input-group form-group-no-border" [ngClass]="{'input-group-focus':focus1===true}">
-                                <div class="input-group-prepend">
-                                  <span class="input-group-text">
-                                      <i class="nc-icon nc-key-25"></i>
-                                  </span>
-                                </div>
-                                  <input type="text" class="form-control" placeholder="Password" (focus)="focus1=true" (blur)="focus1=false" >
-                              </div>
-                              <button class="btn btn-danger btn-block btn-round">Login</button>
-                          </form>
-                          <div class="forgot">
-                              <a href="#" class="btn btn-link btn-danger">Forgot password?</a>
-                          </div>
-                      </div>
-                    </div>
+  <div
+    class="page-header"
+    style="background-image: url('./assets/img/juice.jpg');"
+  >
+    <div class="filter"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-4 col-sm-6 mr-auto ml-auto">
+          <div class="card card-register">
+            <h3 class="title">Welcome</h3>
+            <form
+              class="register-form"
+              novalidate
+              [formGroup]="loginForm"
+              #lform="ngForm"
+              (ngSubmit)="onSubmit()"
+            >
+              <label>Login</label>
+              <div
+                class="input-group form-group-no-border"
+                [ngClass]="{ 'input-group-focus': focus === true }"
+              >
+                <div class="input-group-prepend">
+                  <span class="input-group-text">
+                    <i class="nc-icon nc-single-02  "></i>
+                  </span>
                 </div>
-                <div class="footer register-footer text-center">
-                    <h6>&copy;{{test | date: 'yyyy'}}, made with <i class="fa fa-heart heart"></i> by Olfa Moussaoui</h6>
+
+                <input
+                  type="text"
+                  formControlName="login"
+                  class="form-control"
+                  placeholder="login"
+                  (focus)="focus = true"
+                  (blur)="focus = false"
+                  required
+                />
+              </div>
+              <div
+                *ngIf="
+                  loginForm.controls['login'].invalid &&
+                  (loginForm.controls['login'].dirty ||
+                    loginForm.controls['login'].touched)
+                "
+                class="form-control-feedback"
+              >
+                <div
+                  *ngIf="loginForm.controls['login'].errors.required"
+                  style="color: #f33816; font: bold"
+                >
+                  *login is required.
                 </div>
+              </div>
+              <label>Password</label>
+              <div
+                class="input-group form-group-no-border"
+                [ngClass]="{ 'input-group-focus': focus1 === true }"
+              >
+                <div class="input-group-prepend">
+                  <span class="input-group-text">
+                    <i class="nc-icon nc-key-25"></i>
+                  </span>
+                </div>
+                <input
+                  formControlName="password"
+                  type="password"
+                  class="form-control"
+                  placeholder="Password"
+                  required
+                />
+              </div>
+              <div
+                *ngIf="
+                  loginForm.controls['password'].invalid &&
+                  (loginForm.controls['password'].dirty ||
+                    loginForm.controls['password'].touched)
+                "
+                class="form-control-feedback"
+              >
+                <div
+                  *ngIf="loginForm.controls['password'].errors.required"
+                  style="color: #f33816; font: bold"
+                >
+                  *password is required.
+                </div>
+              </div>
+              <button
+                type="submit"
+                class="btn btn-danger btn-block btn-round"
+                [disabled]="!loginForm.valid"
+              >
+                Login
+              </button>
+            </form>
+            <div class="forgot">
+              <a href="#" class="btn btn-link btn-danger">Forgot password?</a>
             </div>
+          </div>
+        </div>
+      </div>
+      <div class="footer register-footer text-center">
+        <h6>
+          &copy;{{ test | date: "yyyy" }}, made with
+          <i class="fa fa-heart heart"></i> by Olfa Moussaoui
+        </h6>
+      </div>
     </div>
+  </div>
 </div>

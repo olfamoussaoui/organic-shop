@@ -1,3 +1,4 @@
+import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -17,7 +18,8 @@ import { ProductDetailsComponent } from './product-details/product-details.compo
         FormsModule,
         NgbModule,
         NouisliderModule,
-        JwBootstrapSwitchNg2Module
+        JwBootstrapSwitchNg2Module,
+        RouterModule
     ],
     declarations: [
         ComponentsComponent,

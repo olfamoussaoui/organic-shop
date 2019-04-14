@@ -4,6 +4,7 @@ export class Product {
     name: string;
     image_1: string;
     image_2: string;
+    img_url: string;
     price: number;
     category: string;
     promotion: Promotion

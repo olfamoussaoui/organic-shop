@@ -75,15 +75,20 @@ export class ShopComponent implements OnInit {
     let shopping_cart: Cart[] = [];
     let testCart: Cart = new Cart;
     let index;
+    let nb;
     let total;
+    let oldTotal;
+    let subPrice;
     this.cart = new Cart;
     if (basket === null) {
       // add the first new product here
       this.cart.product = p;
       this.cart.quantity = 1;
+      total = this.cart.product.price;
       shopping_cart.push(this.cart);
       this.localSt.store('basket', shopping_cart);
       this.localSt.store('keytot', 1);
+      this.localSt.store('total', total);
     } else {
       // check if the product exist or not
       shopping_cart = [];
@@ -101,15 +106,21 @@ export class ShopComponent implements OnInit {
         console.log(testCart);
         this.cart.product = p;
         this.cart.quantity = testCart.quantity + 1;
+        subPrice = +this.cart.quantity * +this.cart.product.price;
         shopping_cart.push(this.cart);
         // Update Basket
         this.localSt.clear('basket');
         this.localSt.store('basket', shopping_cart);
         // Update keytot
-        total = this.localSt.retrieve('keytot');
-        this.keytot = total + 1;
+        nb = this.localSt.retrieve('keytot');
+        this.keytot = nb + 1;
         this.localSt.clear('keytot');
         this.localSt.store('keytot', this.keytot);
+        // Update Total
+        oldTotal = this.localSt.retrieve('total');
+        total = (+oldTotal - (+testCart.quantity * +testCart.product.price)) + +subPrice;
+        this.localSt.clear('total');
+        this.localSt.store('total', total);
       } else {
         // item does not exist
         console.log('item does not exist')
@@ -121,13 +132,26 @@ export class ShopComponent implements OnInit {
         this.localSt.clear('basket');
         this.localSt.store('basket', shopping_cart);
         // Update keytot
-        total = this.localSt.retrieve('keytot');
-        this.keytot = total + 1;
+        nb = this.localSt.retrieve('keytot');
+        this.keytot = nb + 1;
         this.localSt.clear('keytot');
         this.localSt.store('keytot', this.keytot);
+        // Update Total
+        oldTotal = this.localSt.retrieve('total');
+        total = +oldTotal + +this.cart.product.price;
+        this.localSt.store('total', total);
       }
     }
   }
+  /* getPrice (p: Product): number {
+    let price;
+    if (p.promotion.isPromoted === true) {
+      price = p.price - p.price * (p.promotion.pourcentage / 100);
+      return price;
+    } else {
+      return p.price;
+    }
+  } */
 }
 
 

@@ -17,6 +17,10 @@ export class ProductService {
       return this.http.get<Product[]>(baseURL + 'products')
       .pipe(catchError(this.processHTTPMsgService.handleError));
     }
+    getProduct(id: string): Observable<Product> {
+      return this.http.get<Product>(baseURL + 'products/' + id)
+      .pipe(catchError(this.processHTTPMsgService.handleError));
+    }
     getFruitProducts(): Observable<Product[]> {
       return this.http.get<Product[]>(baseURL + 'products?category=fruits')
       .pipe(catchError(this.processHTTPMsgService.handleError));

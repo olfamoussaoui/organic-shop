@@ -31,59 +31,67 @@
                   </thead>
 
                   <tbody>
-                    <tr>
-                      <td class="image">
-                        <div class="product-image">
-                          <a href="product-detail.html">
-                            <img
-                              src="/assets/img/boufe.jpg"
-                              alt="Bacon Smoked"
-                            />
-                          </a>
-                        </div>
-                      </td>
-                      <td class="image-info">
-                        <div class="product-name">
-                          <a href="product-detail.html" class="title-black">
-                            Bacon Smoked
-                          </a>
-                        </div>
-                      </td>
-                      <td class="price">
-                        <span class="money" data-currency-usd="$100.00"
-                          >$100.00</span
-                        >
-                      </td>
-                      <td class="qty">
-                        <div class="quantity-wrapper clearfix">
-                          <div class="wrapper d-flex justify-content-center">
-                            <input
-                              type="number"
-                              class="form-control text-center"
-                              value="1"
-                            />
+                    <ng-template
+                      [ngIf]="!shopping_basket || shopping_basket.length === 0"
+                    >
+                      <h1 style="color: #282828;">Your basket is empty !</h1>
+                    </ng-template>
+                    <ng-template [ngIf]="shopping_basket">
+                      <tr *ngFor="let p of shopping_basket">
+                        <td class="image">
+                          <div class="product-image">
+                            <a href="product-detail.html">
+                              <img
+                                src="{{ p.product.img_url }}"
+                                alt="{{ p.product.name }}"
+                              />
+                            </a>
                           </div>
-                        </div>
-                      </td>
-                      <td class="total title-1">
-                        <span class="money" data-currency-usd="$100.00"
-                          >$100.00</span
-                        >
-                      </td>
-                      <td class="remove">
-                        <a href="#" class="cart">
-                          <i class="fa fa-times" aria-hidden="true"></i>
-                        </a>
-                      </td>
-                    </tr>
-
+                        </td>
+                        <td class="image-info">
+                          <div class="product-name">
+                            <a href="product-detail.html" class="title-black">
+                              {{ p.product.name }}
+                            </a>
+                          </div>
+                        </td>
+                        <td class="price">
+                          <span class="money" data-currency-usd="$100.00"
+                            >{{ p.product.price }} $</span
+                          >
+                        </td>
+                        <td class="qty">
+                          <div class="quantity-wrapper clearfix">
+                            <div class="wrapper d-flex justify-content-center">
+                              <input
+                                type="number" min="1"
+                                class="form-control text-center"
+                                value="{{ p.quantity }}"
+                              />
+                            </div>
+                          </div>
+                        </td>
+                        <td class="total title-1">
+                          <span class="money"
+                            >{{ p.quantity * p.product.price }} $</span
+                          >
+                        </td>
+                        <td class="remove">
+                          <a
+                            role="button"
+                            (click)="removeItem(p)"
+                            class="cart"
+                            style="cursor: pointer;"
+                          >
+                            <i class="fa fa-times" aria-hidden="true"></i>
+                          </a>
+                        </td>
+                      </tr>
+                    </ng-template>
                     <tr class="cart-actions">
                       <td colspan="3" class="back-to-shop text-left">
                         <span>
-                          <a
-                            href="product-category-grid.html"
-                            class="btn view button-main"
-                          >
+                          <a routerLink='/shop' class="btn view button-main" style='color:white;'>
                             <i
                               class="fa fa-long-arrow-left"
                               aria-hidden="true"
@@ -95,7 +103,8 @@
                       <td colspan="3" class="cart-process text-right">
                         <a
                           class="gsf-link clear-cart btn view button-main1"
-                          href="#"
+                          role="button"
+                          (click)="removeStorage()"
                         >
                           <i class="fa fa-times" aria-hidden="true"></i>
                           <span>Clear All</span>
@@ -134,7 +143,10 @@
                         <h4 class="woocommerce-block-title mg-top-0">
                           Cart Total
                         </h4>
-                        <table class="shop-table" style="margin-bottom: 17.25pt;">
+                        <table
+                          class="shop-table"
+                          style="margin-bottom: 17.25pt;"
+                        >
                           <tbody>
                             <tr class="cart-subtotal">
                               <th>Subtotal</th>
@@ -142,7 +154,15 @@
                                 <span class="woocommerce-Price-amount amount">
                                   <span class="woocommerce-Price-currencySymbol"
                                     >$</span
-                                  >177.00
+                                  >
+                                  <ng-template
+                                    [ngIf]="subTotal && subTotal > 0"
+                                  >
+                                    {{ subTotal }}
+                                  </ng-template>
+                                  <ng-template [ngIf]="!subTotal">
+                                    0
+                                  </ng-template>
                                 </span>
                               </td>
                             </tr>
@@ -155,25 +175,28 @@
                                     <input type="checkbox" />
                                     <span class="checkmark"></span>
                                   </label>
-                                    <span>Free Shipping</span>
+                                  <span>Free Shipping</span>
                                 </div>
                                 <div class="check-box">
                                   <label class="check">
                                     <input type="checkbox" checked="" />
                                     <span class="checkmark"></span>
                                   </label>
-                                    <span>Local Pickup</span>
+                                  <span>Local Pickup</span>
                                 </div>
                                 <div class="check-box">
                                   <label class="check">
                                     <input type="checkbox" />
                                     <span class="checkmark"></span>
                                   </label>
-                                    <span>Flat Rate</span>
+                                  <span>Flat Rate</span>
                                 </div>
                                 <div class="coupon-wrap">
                                   <div class="coupon text-left">
-                                    <h4 class="woocommerce-block-title" style="margin-bottom: 1rem;">
+                                    <h4
+                                      class="woocommerce-block-title"
+                                      style="margin-bottom: 1rem;"
+                                    >
                                       Calculate Shipping
                                     </h4>
                                     <div class="coupon-content">

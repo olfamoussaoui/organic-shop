@@ -12,6 +12,10 @@ export class NavbarComponent implements OnInit {
     private sidebarVisible: boolean;
     @LocalStorage('keytot')
     total;
+    @LocalStorage('submitted')
+    submitted;
+    @LocalStorage('login')
+    login;
     constructor(public location: Location,
         private localSt: LocalStorageService,
         private element: ElementRef) {
@@ -54,4 +58,10 @@ export class NavbarComponent implements OnInit {
             this.sidebarClose();
         }
     };
+    logout() {
+        this.localSt.clear('login');
+        this.localSt.clear('password');
+        this.localSt.clear('submitted');
+        this.localSt.store('submitted', false);
+    }
 }
