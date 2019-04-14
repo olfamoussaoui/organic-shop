@@ -19,7 +19,8 @@ import { HomeModule } from './home/home.module';
 import { HttpClientModule } from '@angular/common/http';
 import {NgxWebstorageModule} from 'ngx-webstorage';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ToastrModule, ToastContainerModule } from 'ngx-toastr';
+import { ToastrModule } from 'ngx-toastr';
+import { NgFlashMessagesModule } from 'ng-flash-messages';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,11 @@ import { ToastrModule, ToastContainerModule } from 'ngx-toastr';
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule, // required animations module
-    ToastrModule.forRoot() // ToastrModule added
+    ToastrModule.forRoot({
+      timeOut: 10000,
+      positionClass: 'toast-bottom-right',
+      preventDuplicates: true,
+    })
   ],
   providers: [
     ProductService,

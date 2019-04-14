@@ -1,17 +1,15 @@
 import { ProductService } from './../../services/product.service';
 import { Cart } from './../../shared/classes/cart';
 import { LocalStorageService, LocalStorage } from 'ngx-webstorage';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Product } from 'app/shared/classes/product';
-import { ToastrService, ToastContainerDirective } from 'ngx-toastr';
-
+import { NgFlashMessageService } from 'ng-flash-messages';
 @Component({
   selector: 'app-checklist',
   templateUrl: './checklist.component.html',
   styleUrls: ['./checklist.component.scss']
 })
 export class ChecklistComponent implements OnInit {
-  @ViewChild(ToastContainerDirective) toastContainer: ToastContainerDirective;
   @LocalStorage('basket')
   shopping_basket: Cart[];
   @LocalStorage('total')
@@ -21,13 +19,12 @@ export class ChecklistComponent implements OnInit {
   id: string;
   cart: Cart[] = [];
   testCart: Cart = new Cart();
-  constructor(private localSt: LocalStorageService, private productService: ProductService, private toastr: ToastrService) { }
+  constructor(private localSt: LocalStorageService, private productService: ProductService) { }
 
   ngOnInit() {
     this.localSt.observe('basket').subscribe((response) => {
       console.log(response);
     });
-    this.toastr.overlayContainer = this.toastContainer;
   }
   removeStorage() {
     this.localSt.clear('basket');
