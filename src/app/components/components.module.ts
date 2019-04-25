@@ -11,6 +11,7 @@ import { AboutusComponent } from './aboutus/aboutus.component';
 import { ContactusComponent } from './contactus/contactus.component';
 import { ChecklistComponent } from './checklist/checklist.component';
 import { ProductDetailsComponent } from './product-details/product-details.component';
+import { NgbdModalComponent, NgbdModalContent } from './modal/modal.component';
 
 @NgModule({
     imports: [
@@ -27,9 +28,11 @@ import { ProductDetailsComponent } from './product-details/product-details.compo
         AboutusComponent,
         ContactusComponent,
         ChecklistComponent,
-        ProductDetailsComponent
+        ProductDetailsComponent,
+        NgbdModalComponent,
+        NgbdModalContent
     ],
-    entryComponents: [],
+    entryComponents: [NgbdModalContent],
     exports: [ ComponentsComponent ]
 })
 export class ComponentsModule { }

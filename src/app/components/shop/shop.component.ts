@@ -79,16 +79,19 @@ export class ShopComponent implements OnInit {
     let total;
     let oldTotal;
     let subPrice;
+    let totBasket;
     this.cart = new Cart;
     if (basket === null) {
       // add the first new product here
       this.cart.product = p;
       this.cart.quantity = 1;
       total = this.cart.product.price;
+      totBasket = total + 6;
       shopping_cart.push(this.cart);
       this.localSt.store('basket', shopping_cart);
       this.localSt.store('keytot', 1);
       this.localSt.store('total', total);
+      this.localSt.store('basketTot', totBasket);
     } else {
       // check if the product exist or not
       shopping_cart = [];
@@ -121,6 +124,10 @@ export class ShopComponent implements OnInit {
         total = (+oldTotal - (+testCart.quantity * +testCart.product.price)) + +subPrice;
         this.localSt.clear('total');
         this.localSt.store('total', total);
+        totBasket = total + 6;
+        this.localSt.clear('basketTot');
+        this.localSt.store('basketTot', totBasket);
+
       } else {
         // item does not exist
         console.log('item does not exist')
@@ -140,6 +147,9 @@ export class ShopComponent implements OnInit {
         oldTotal = this.localSt.retrieve('total');
         total = +oldTotal + +this.cart.product.price;
         this.localSt.store('total', total);
+        totBasket = total + 6;
+        this.localSt.clear('basketTot');
+        this.localSt.store('basketTot', totBasket);
       }
     }
   }

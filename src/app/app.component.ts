@@ -64,13 +64,4 @@ export class AppComponent implements OnInit {
             return true;
         }
     }
-    showSuccess() {
-        this.toastr.success('Hello world!', 'Toastr fun!',
-            { timeOut: 2000 });
-    }
-    showError() {
-        this.toastr.error('everything is broken', 'Major Error', {
-            timeOut: 3000
-        });
-    }
 }

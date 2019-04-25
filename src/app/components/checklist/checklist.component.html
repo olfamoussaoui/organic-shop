@@ -64,9 +64,11 @@
                           <div class="quantity-wrapper clearfix">
                             <div class="wrapper d-flex justify-content-center">
                               <input
+                                #quantity
                                 type="number" min="1"
                                 class="form-control text-center"
                                 value="{{ p.quantity }}"
+                                (change) = "addProd(p, quantity.value)"
                               />
                             </div>
                           </div>
@@ -115,28 +117,7 @@
                 </table>
               </div>
               <div class="row">
-                <div class="col-lg-5 col-md-12">
-                  <div class="coupon-wrap">
-                    <div class="coupon text-left">
-                      <h4 class="woocommerce-block-title">Coupon Discount</h4>
-                      <div class="coupon-content">
-                        <p class="description">
-                          Enter your coupon if you have one
-                        </p>
-                        <input
-                          type="text"
-                          name="coupon_code"
-                          class="input-code spr-form-input"
-                          id="coupon_code"
-                          value=""
-                          placeholder="Coupon code"
-                        />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="col-lg-7 col-md-12 cart-collaterals mg-top-50">
+                <div class="col-lg-10 col-md-12 cart-collaterals mg-top-50">
                   <div class="layout-cart-right">
                     <div class="cart-totals clearfix">
                       <div>
@@ -169,49 +150,13 @@
 
                             <tr class="cart-subtotal cart-item">
                               <th>Shipping</th>
-                              <td data-title="Subtotal">
-                                <div class="check-box">
-                                  <label class="check">
-                                    <input type="checkbox" />
-                                    <span class="checkmark"></span>
-                                  </label>
-                                  <span>Free Shipping</span>
-                                </div>
-                                <div class="check-box">
-                                  <label class="check">
-                                    <input type="checkbox" checked="" />
-                                    <span class="checkmark"></span>
-                                  </label>
-                                  <span>Local Pickup</span>
-                                </div>
-                                <div class="check-box">
-                                  <label class="check">
-                                    <input type="checkbox" />
-                                    <span class="checkmark"></span>
-                                  </label>
-                                  <span>Flat Rate</span>
-                                </div>
-                                <div class="coupon-wrap">
-                                  <div class="coupon text-left">
-                                    <h4
-                                      class="woocommerce-block-title"
-                                      style="margin-bottom: 1rem;"
-                                    >
-                                      Calculate Shipping
-                                    </h4>
-                                    <div class="coupon-content">
-                                      <select>
-                                        <option value="">United Kingdom</option>
-                                      </select>
-                                      <input
-                                        type="text"
-                                        class="input-code spr-form-input"
-                                        placeholder="Postcode/Zip"
-                                      />
-                                    </div>
-                                  </div>
-                                </div>
-                              </td>
+                              <td data-title="Total">
+                                  <span class="woocommerce-Price-amount amount">
+                                    <span class="woocommerce-Price-currencySymbol"
+                                      >$</span
+                                    >6
+                                  </span>
+                                </td>
                             </tr>
 
                             <tr class="order-total">
@@ -220,20 +165,36 @@
                                 <span class="woocommerce-Price-amount amount">
                                   <span class="woocommerce-Price-currencySymbol"
                                     >$</span
-                                  >177.00
+                                  >
+                                  <ng-template [ngIf] = "basketTot!=0">
+                                      {{basketTot}}
+                                  </ng-template>
+                                  <ng-template [ngIf] = "!basketTot">
+                                      0
+                                  </ng-template>
                                 </span>
                               </td>
                             </tr>
                           </tbody>
                         </table>
-
-                        <div class="to-checkout">
-                          <a
-                            href="product-checkout.html"
-                            class="checkout-button  btn view button-main"
-                            >Proceed to checkout</a
-                          >
-                        </div>
+                        <ng-template [ngIf] = "submitted">
+                            <div class="to-checkout">
+                                <a
+                                  style='color:white;'
+                                  class="checkout-button  btn view button-main"
+                                  >Proceed to checkout</a
+                                >
+                              </div>
+                        </ng-template>
+                        <ng-template [ngIf] = "!submitted">
+                            <div class="to-checkout">
+                                <a
+                                style='color:white;'
+                                  class="checkout-button  btn view button-main" disabled 
+                                  >Proceed to checkout</a
+                                >
+                              </div>
+                        </ng-template>
                       </div>
                     </div>
                   </div>
